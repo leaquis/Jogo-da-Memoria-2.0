@@ -46,8 +46,32 @@ async function createCards() {
     }
 }
 
+let flippedCards = 0;
+let firstCard, secondCard;
+let attempts = 0;
+
 function flipCard() {
-    console.log("virou")
+    if(flippedCards < 2 && !this.classList.contains("flip")) {
+        flippedCards++;
+        this.classList.add("flip");
+        if(flippedCards === 1) {
+            firstCard = this;
+        } else {
+            secondCard = this;
+            attemps++;
+            updateAttempts();
+            checkForMatch();
+        }
+    }
+}
+
+function checkForMatch() {
+    const isMatch = firstCard.getAttribute("data-card") === secondCard.getAttribute("data-card")
+}
+
+function updateAttempts() {
+    const attemptsElements = document.querySelector(".attempts");
+    attemptsElements.textContent = `Tentativas: ${attempts}`;
 }
 
 createCards();
